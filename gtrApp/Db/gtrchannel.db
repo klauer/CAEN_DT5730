@@ -1,0 +1,42 @@
+record(waveform,"$(P)$(R)waveform$(N)")
+{
+    field(DTYP,"$(DTYPE)")
+    field(INP, "@asyn($(PORT), $(N), $(TIMEOUT))READ_DATA")
+    field(SCAN,"I/O Intr")
+    field(NELM, "$(SIZE)")
+    field(FTVL, "$(TYPE)")
+}
+
+## record(longin, "$(P)$(R)$(CHID)Data")
+## {
+##     field(DESC, "Pointer to ND buffer")
+##     field(DTYP, "asynInt32")
+##     field(INP,  "@asyn($(PORT), 0)ARRAY_DATA")
+##     field(SCAN, "I/O Intr")
+##     field(TPRO, "1")
+## }
+
+## Acquisition parameters 
+## may be to use Acquire?
+
+## record(bo, "$(P)$(R)Start")
+## {       
+##     field(DESC, "Start acquisition")
+##     field(DTYP, "asynInt32")
+##     field(OUT,  "@asyn($(PORT), 0,$(TIMEOUT))ACQ_START")
+## }
+
+## record(bo, "$(P)$(R)Stop")
+## {       
+##     field(DESC, "Stop acqusition")
+##     field(DTYP, "asynInt32")
+##     field(OUT,  "@asyn($(PORT), 0,$(TIMEOUT))ACQ_STOP")
+## }
+
+## record(stringin, "$(P)$(R)Model_RBV")
+## {   
+##     field(DTYP, "asynOctetRead")
+##     field(DESC, "Detector model name")
+##     field(INP,  "@asyn($(PORT), 0)MODEL")
+##     field(SCAN, "I/O Intr")
+## }

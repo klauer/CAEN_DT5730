@@ -1,0 +1,136 @@
+
+record(bo, "$(P)$(R)$(CHID)Enabled")
+{		
+	field(DESC, "Enable channel.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_ENABLED")
+}
+
+record(bi, "$(P)$(R)$(CHID)Enabled_RBV")
+{		
+	field(DESC, "Is channel enabled.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_ENABLED")
+   	field(SCAN, "I/O Intr")
+}
+
+## Triggering
+record(mbbo, "$(P)$(R)$(CHID)SelfTrgMode")
+{
+    field(DESC, "Self trigger mode")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_SELF_TRG_MODE")
+   	field(ZRST, "DISABLED")
+   	field(ONST, "EXTOUT_ONLY")
+   	field(TWST, "ACQ_ONLY")
+   	field(THST, "ACQ_AND_EXTOUT")
+
+}
+
+record(mbbi, "$(P)$(R)$(CHID)SelfTrgMode_RBV")
+{		
+    field(DESC, "Self trigger mode.")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_SELF_TRG_MODE")
+    field(SCAN, "I/O Intr")
+    field(ZRST, "DISABLED")
+    field(ONST, "EXTOUT_ONLY")
+    field(TWST, "ACQ_ONLY")
+    field(THST, "ACQ_AND_EXTOUT")
+}
+
+record(longout, "$(P)$(R)$(CHID)TrgThrsh")
+{		
+	field(DESC, "Self-channel threshold.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_SELF_TRG_THRSH")
+}
+
+record(longin, "$(P)$(R)$(CHID)TrgThrsh_RBV")
+{		
+	field(DESC, "Self-channel threshold.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_SELF_TRG_THRSH")
+   	field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)$(R)$(CHID)TrgPolarity")
+{		
+	field(DESC, "Trigger polarity.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_TRG_POLARITY")	
+   	field(ONAM, "RisingEdge")
+   	field(ZNAM, "FallingEdge")
+}
+
+record(bi, "$(P)$(R)$(CHID)TrgPolarity_RBV")
+{		
+	field(DESC, "Trigger polarity.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_TRG_POLARITY")
+   	field(SCAN, "I/O Intr")
+   	field(ONAM, "RisingEdge")
+   	field(ZNAM, "FallingEdge")   	
+}
+
+record(bo, "$(P)$(R)$(CHID)PulsePolarity")
+{		
+	field(DESC, "Channel pulse polarity.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_PULSE_POLARITY")
+   	field(ONAM, "Positive")
+   	field(ZNAM, "Negative")   	
+}
+
+record(bi, "$(P)$(R)$(CHID)PulsePolarity_RBV")
+{		
+	field(DESC, "Channel pulse polarity.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_PULSE_POLARITY")
+   	field(SCAN, "I/O Intr")
+   	field(ONAM, "Positive")
+   	field(ZNAM, "Negative")   	
+}
+
+## Acquisition parameters
+record(longout, "$(P)$(R)$(CHID)DCOffset")
+{		
+	field(DESC, "DC current offset.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_DC_OFFSET")
+}
+
+record(longin, "$(P)$(R)$(CHID)DCOffset_RBV")
+{		
+	field(DESC, "DC current offset.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_DC_OFFSET")
+   	field(SCAN, "I/O Intr")
+}
+
+record(mbbo, "$(P)$(R)$(CHID)ZSP")
+{		
+	field(DESC, "ero Suppression mode")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_ZERRO_MODE")
+   	field(ZRST, "FINE")
+   	field(ONST, "COARSE")
+}
+
+record(mbbi, "$(P)$(R)$(CHID)ZSP_RBV")
+{
+    field(DESC, "Zero Suppression mode")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_ZERRO_MODE")
+    field(SCAN, "I/O Intr")
+    field(ZRST, "FINE")
+    field(ONST, "COARSE")
+}
+
+record(longin, "$(P)$(R)$(CHID)Data")
+{
+   field(DESC, "Pointer to ND buffer")
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn($(PORT),$(N))ARRAY_DATA")
+   field(SCAN, "I/O Intr")
+}

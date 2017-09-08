@@ -1,0 +1,77 @@
+##########################################################
+## [21] Over-temperature Status [CH7:CH4]:
+## 	0 = no over-temperature
+## 	1 = over-temperature
+## [20] Over-temperature Status [CH3:CH0]:
+## 	0 = no over-temperature
+## 	1 = over-temperature
+## [19] Channels Shutdown Status:
+## 	0 = shutdown is OFF
+## 	1 = shutdown is ON
+## [16]  TRG-IN Status: read current logical level on TRG-IN
+## [15]  GPI Status: read current logical level on GPI
+## [8] Board Ready: Board readiness for acquisition 
+## 	0 = Board is not ready to start acquisition
+## 	1 = Board is ready to start acquisition
+## [7] PLL Unlock Detect: PLL unlock flag.
+## 	0 = PLL has had an unlock condition since the last register read access
+## 	1 = PLL hasn’t had any unlock condition since the last register read access.
+## [6] PLL Bypass mode:
+## 	0 = PLL is not bypassed
+## 	1 = PLL is bypassed: the VCXO frequency directly drives the clock ditribution tree.
+## [5] Clock source:
+## 	0 = Internal (PLL uses the internal 50 MHz oscillator as a reference)
+## 	1 = External (PLL uses the external clock as a reference)
+## [4] EVENT FULL: it is set to 1 as the maximum nr. of events to be read is reached
+## [3] EVENT READY: it is set to 1 as at least one event is available to readout
+## [2] Acquisition Status: It reflects the status of the acquisition (front panel “RUN” LED).
+## 	0 = Acquisition is stopped
+## 	1 = Acquisition is running
+
+record(mbbiDirect, "$(P)$(R)AcqStatus_RBV")
+{		
+	field(DESC, "Acquisition status.")
+	field(DTYP, "asynUInt32Digital")
+	field(INP,  "@asynMask($(PORT),-1,0xFFFF,$(TIMEOUT))ACQ_STATUS")
+   	field(SCAN, "I/O Intr")
+}
+
+## 
+## [6] Power Down:
+## 		0 = No ADC channels power down
+## 		1 = ADC channels in power down by automatic temperature protection
+## [5] Temp Fail:
+## 		0 = No error
+## 		1 = A channel temperature fail occurred
+## [4] PLL Lock Loss:
+## 		0 = No error
+## 		1 = A PLL lock loss occurred
+## [3:0] Internal Communication Timeout: 0000 = No Error
+##
+record(mbbiDirect, "$(P)$(R)FailStatus_RBV")
+{		
+	field(DESC, "Board fail status.")
+	field(DTYP, "asynUInt32Digital")
+	field(INP,  "@asynMask($(PORT),-1, 0x3F, $(TIMEOUT))FAIL_STATUS")
+   	field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)$(R)Clock")
+{		
+	field(DESC, "Clock source")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), -1, $(TIMEOUT))CLOCK")
+	field(ZNAM, "INT")
+	field(ONAM, "EXT")
+}
+
+record(bi, "$(P)$(R)Clock_RBV")
+{		
+	field(DESC, "Clock source")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), -1, $(TIMEOUT))CLOCK")
+   	field(SCAN, "I/O Intr")
+	field(ZNAM, "INT")
+	field(ONAM, "EXT")
+	field(PINI, "YES")	
+}

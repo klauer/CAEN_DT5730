@@ -1,0 +1,386 @@
+
+
+record(stringin, "$(P)$(R)Manuf_RBV")
+{
+	field(DTYP, "asynOctetRead")
+	field(DESC, "Detector manufacturer name")
+	field(INP,  "@asyn($(PORT), $(ADDR))MANUF")
+   	field(SCAN, "I/O Intr")
+}
+
+record(stringin, "$(P)$(R)Model_RBV")
+{	
+	field(DTYP, "asynOctetRead")
+	field(DESC, "Detector model name")
+	field(INP,  "@asyn($(PORT), $(ADDR))MODEL")
+   	field(SCAN, "I/O Intr")
+}
+	
+record(longin,   "$(P)$(R)Channels_RBV")
+{	
+	field(DTYP, "asynInt32")
+	field(DESC, "Number of channels")
+	field(INP,  "@asyn($(PORT), $(ADDR))CHANNEL_NUM")
+   	field(SCAN, "I/O Intr")
+}
+	
+record(mbbi,     "$(P)$(R)FF_RBV")
+{	
+	field(DTYP, "asynInt32")
+	field(DESC, "Format Factor (VME, NIM, Desktop)")
+	field(INP,  "@asyn($(PORT), $(ADDR))FORM_FACTOR")
+   	field(SCAN, "I/O Intr")
+   	
+   	field(ZRST, "VME64")
+   	field(ONST, "VME64X")
+   	field(TWST, "DESKTOP")
+   	field(THST, "NIM")   	   	
+}
+	
+record(mbbi, "$(P)$(R)Family_RBV")
+{	
+	field(DTYP, "asynInt32")
+	field(DESC, "Family (ADC type)")
+	field(INP,  "@asyn($(PORT), $(ADDR))FAMILY")
+   	field(SCAN, "I/O Intr")
+   	
+   	field(ZRST, "XX724")
+   	field(ONST, "XX721")
+   	field(TWST, "XX731")
+   	field(THST, "XX720")
+   	field(FRST, "XX740")
+   	field(FVST, "XX751")
+   	field(SXST, "XX742")
+   	field(SVST, "XX780")
+   	field(EIST, "XX761")
+   	field(NIST, "XX743")
+   	field(TEST, "XX730")
+   	field(ELST, "XX790")
+   	field(TVST, "XX781")
+   	field(TTST, "XX725")   	
+}
+	
+record(stringin, "$(P)$(R)ROCFW_RBV")
+{	
+	field(DTYP, "asynOctetRead")
+	field(DESC, "FPGA Firmware Revision (ROC)")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ROCFW")
+   	field(SCAN, "I/O Intr")
+}
+	
+record(stringin, "$(P)$(R)AMCFW_RBV")
+{	
+	field(DTYP, "asynOctetRead")
+	field(DESC, "FPGA Firmware Revision (AMC)")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))AMCFW")
+   	field(SCAN, "I/O Intr")
+}
+	
+record(longin,   "$(P)$(R)SN_RBV")
+{	
+	field(DTYP, "asynInt32")
+	field(DESC, "Serial number of the board")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))SN")
+   	field(SCAN, "I/O Intr")
+}
+	
+record(longin,   "$(P)$(R)PCB_Rev_RBV")
+{	
+	field(DTYP, "asynInt32")
+	field(DESC, "PCB Revision number")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))PCB_REV")
+   	field(SCAN, "I/O Intr")
+}
+	
+record(longin,   "$(P)$(R)ADCNBits_RBV")
+{	
+	field(DTYP, "asynInt32")
+	field(DESC, "Number of bits of the ADC")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ADC_N_BITS")
+   	field(SCAN, "I/O Intr")
+}
+	
+record(waveform, "$(P)$(R)License_RBV")
+{		
+	field(DESC, "License")
+	field(DTYP, "asynInt8ArrayIn")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))LICENSE")
+   	field(SCAN, "I/O Intr")
+   	field(FTVL, "UCHAR")
+}
+
+record(bo, "$(P)$(R)Calibrate")
+{		
+	field(DESC, "Start calibration")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))CALIBRATE")
+}
+
+record(longin, "$(P)$(R)ErrCode")
+{	
+	field(DTYP, "asynInt32")
+	field(DESC, "CAEN Error code")
+	field(INP,  "@asyn($(PORT), $(ADDR))ERR_CODE")
+   	field(SCAN, "I/O Intr")
+}
+
+record(waveform, "$(P)$(R)Error")
+{		
+	field(DESC, "License")
+	field(DTYP, "asynInt8ArrayIn")
+	field(INP,  "@asyn($(PORT), $(ADDR))ERR_DESC")
+   	field(SCAN, "I/O Intr")
+   	field(FTVL, "UCHAR")
+}
+
+## Triggering
+
+record(bo, "$(P)$(R)SWTrg")
+{		
+	field(DESC, "Send software triggering")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))SW_TRG")
+}
+
+record(mbbo, "$(P)$(R)SWTrgMode")
+{		
+	field(DESC, "Send software triggering")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))SW_TRG_MODE")	
+   	field(ZRST, "DISABLED")
+   	field(ONST, "EXTOUT_ONLY")
+   	field(TWST, "ACQ_ONLY")
+   	field(THST, "ACQ_AND_EXTOUT")
+}
+
+record(mbbi, "$(P)$(R)SWTrgMode_RBV")
+{		
+	field(DESC, "Software trigger mode")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))SW_TRG_MODE")
+   	field(SCAN, "I/O Intr")
+   	field(ZRST, "DISABLED")
+   	field(ONST, "EXTOUT_ONLY")
+   	field(TWST, "ACQ_ONLY")
+   	field(THST, "ACQ_AND_EXTOUT")
+}
+
+record(mbbo, "$(P)$(R)ExtTrgMode")
+{		
+	field(DESC, "External trigger mode")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))EXT_TRG_MODE")
+   	field(ZRST, "DISABLED")
+   	field(ONST, "EXTOUT_ONLY")
+   	field(TWST, "ACQ_ONLY")
+   	field(THST, "ACQ_AND_EXTOUT")
+}
+
+record(mbbi, "$(P)$(R)ExtTrgMode_RBV")
+{		
+	field(DESC, "External trigger mode")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))EXT_TRG_MODE")
+   	field(SCAN, "I/O Intr")
+   	field(ZRST, "DISABLED")
+   	field(ONST, "EXTOUT_ONLY")
+   	field(TWST, "ACQ_ONLY")
+   	field(THST, "ACQ_AND_EXTOUT")
+}
+
+record(bo, "$(P)$(R)IOLevel")
+{		
+	field(DESC, "I/O level")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))IO_LEVEL")	
+	field(ONAM, "NIM")
+	field(ZNAM, "TTL")
+}
+
+record(bi, "$(P)$(R)IOLevel_RBV")
+{		
+	field(DESC, "I/O level")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))IO_LEVEL")
+   	field(SCAN, "I/O Intr")
+	field(ONAM, "NIM")
+	field(ZNAM, "TTL")
+}
+
+## Acquisition parameters 
+## may be to use Acquire?
+
+record(bo, "$(P)$(R)Start")
+{		
+	field(DESC, "Start acquisition")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ACQ_START")
+}
+
+record(bo, "$(P)$(R)Stop")
+{		
+	field(DESC, "Stop acqusition")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ACQ_STOP")
+}
+
+record(longout, "$(P)$(R)RecLen")
+{		
+	field(DESC, "Acquisition window (samples)")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))RECORD_LENGTH")
+}
+	
+record(longin, "$(P)$(R)RecLen_RBV")
+{		
+	field(DESC, "Acquisition window (samples)")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))RECORD_LENGTH")
+   	field(SCAN, "I/O Intr")
+}
+
+record(longout, "$(P)$(R)PostTrigLen")
+{		
+	field(DESC, "Trigger position within the window.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))POST_TRG_LEN")
+}
+	
+record(longin, "$(P)$(R)PostTrigLen_RBV")
+{		
+	field(DESC, "Trigger position within the window.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))POST_TRG_LEN")
+   	field(SCAN, "I/O Intr")
+}
+
+record(mbbo, "$(P)$(R)AcqMode")
+{		
+	field(DESC, "Digitizer acquisition mode.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ACQ_MODE")
+	
+   	field(ZRST, "SW")
+   	field(ONST, "S_IN")
+   	field(TWST, "TRG")
+}
+	
+record(mbbi, "$(P)$(R)AcqMode_RBV")
+{		
+	field(DESC, "Digitizer acquisition mode.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ACQ_MODE")
+   	field(SCAN, "I/O Intr")
+   	field(ZRST, "SW")
+   	field(ONST, "S_IN")
+   	field(TWST, "TRG")
+}
+
+record(mbbo, "$(P)$(R)ZSpMode")
+{		
+	field(DESC, "Zero Suppression mode")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ZERRO_SP_MODE")
+   	field(ZRST, "ZS_NO")
+   	field(ONST, "ZS_INT")
+   	field(TWST, "ZS_ZLE")
+   	field(THST, "ZS_AMP")
+}
+
+record(mbbi, "$(P)$(R)ZSpMode_RBV")
+{		
+	field(DESC, "Zero Suppression mode")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT), $(ADDR),$(TIMEOUT))ZERRO_SP_MODE")
+   	field(SCAN, "I/O Intr")
+   	field(ZRST, "ZS_NO")
+   	field(ONST, "ZS_INT")
+   	field(TWST, "ZS_ZLE")
+   	field(THST, "ZS_AMP")
+}
+
+###################################################################
+#  These records control NDArray callacks                         # 
+###################################################################
+record(bo, "$(P)$(R)ArrayCallbacks")
+{
+    field(PINI, "YES")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))ARRAY_CALLBACKS")
+    field(ZNAM, "Disable")
+    field(ONAM, "Enable")
+}
+
+record(bi, "$(P)$(R)ArrayCallbacks_RBV")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))ARRAY_CALLBACKS")
+    field(ZNAM, "Disable")
+    field(ONAM, "Enable")
+    field(SCAN, "I/O Intr")
+}
+
+###################################################################
+#  Status of NDArrayPool - number of buffers, memory used etc.    # 
+###################################################################
+
+record(ai, "$(P)$(R)PoolMaxMem")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))POOL_MAX_MEMORY")
+   field(PREC, "1")
+   field(EGU,  "MB")
+   field(SCAN, "Passive")
+   field(PINI, "YES")
+}
+
+record(longin, "$(P)$(R)PoolMaxBuffers")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))POOL_MAX_BUFFERS")
+   field(SCAN, "Passive")
+   field(PINI, "YES")
+}
+
+record(ai, "$(P)$(R)PoolUsedMem")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))POOL_USED_MEMORY")
+   field(PREC, "1")
+   field(EGU,  "MB")
+##   field(SCAN, ".1 second")
+   field(FLNK, "$(P)$(R)PoolAllocBuffers")
+}
+
+record(longin, "$(P)$(R)PoolAllocBuffers")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))POOL_ALLOC_BUFFERS")
+   field(FLNK, "$(P)$(R)PoolFreeBuffers")
+}
+
+record(longin, "$(P)$(R)PoolFreeBuffers")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))POOL_FREE_BUFFERS")
+}
+
+record(calc, "$(P)$(R)PoolUsedBuffers")
+{
+    field(INPA, "$(P)$(R)PoolAllocBuffers CP MS")
+    field(INPB, "$(P)$(R)PoolFreeBuffers CP MS")
+    field(CALC, "A-B")
+}
+
+
+###################################################################
+#  The asynRecord is used for mainly for trace mask               # 
+###################################################################
+ 
+# Set ASYN_TRACEIO_HEX bit by default
+record(asyn,"$(P)$(R)AsynIO")
+{
+    field(PORT, $(PORT))
+    field(TIB2,"1")
+    info("ADType", "ADDriver")
+}

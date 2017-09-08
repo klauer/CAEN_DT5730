@@ -1,0 +1,95 @@
+record(stringin,"$(P)$(R)name")
+{
+    field(DTYP,"GTR")
+    field(INP,"@asyn($(PORT),$(ADDR),$(TIMEOUT))NAME")
+}
+
+record(mbbo,"$(P)$(R)arm")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))ARM")
+}
+
+record(mbbo,"$(P)$(R)clock")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))CLOCK")
+}
+
+record(mbbo,"$(P)$(R)trigger")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))TRIGGER")
+}
+
+record(mbbo,"$(P)$(R)multiEvent")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))MULTI_EVENT")
+}
+
+record(mbbo,"$(P)$(R)preAverage")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))PRE_AVERAGE")
+}
+
+record(longout,"$(P)$(R)numberPTS")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))NUMBER_PTS")
+}
+
+record(longout,"$(P)$(R)numberPPS")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))NUMBER_PPS")
+}
+
+record(longout,"$(P)$(R)numberPTE")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))NUMBER_PTE")
+}
+
+record(bo,"$(P)$(R)softTrigger")
+{
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))SW_TRG")
+}
+
+record(bo,"$(P)$(R)autoRestart")
+{
+    field(SCAN,"I/O Intr")
+    field(PHAS,"1")
+    field(DTYP,"GTR")
+    field(OUT,"@asyn($(PORT),$(ADDR),$(TIMEOUT))AUTO_REARM")
+    field(ZNAM,"no")
+    field(ONAM,"yes")
+    field(FLNK,"$(P)$(R)counter")
+}
+
+record(calc,"$(P)$(R)counter")
+{
+    field(CALC,"A+1")
+    field(INPA,"$(P)$(R)counter")
+}
+
+record(ai,"$(P)$(R)everySecond")
+{
+    field(SCAN,"1 second")
+    field(FLNK,"$(P)$(R)perSecond")
+}
+
+record(calc,"$(P)$(R)perSecond")
+{
+    field(CALC,"A")
+    field(INPA,"$(P)$(R)counter")
+    field(FLNK,"$(P)$(R)reset")
+}
+
+record(ao,"$(P)$(R)reset")
+{
+    field(VAL,"0")
+    field(OUT,"$(P)$(R)counter NPP NMS")
+}

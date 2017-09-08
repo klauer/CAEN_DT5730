@@ -1,0 +1,36 @@
+
+record(mbbo, "$(P)$(R)CH$(N)Gain")
+{
+	field(DESC, "Gain of channel.")
+	field(DTYP, "asynInt32")
+	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_GAIN")
+}
+
+record(mbbi, "$(P)$(R)CH$(N)Gain_RBV")
+{		
+	field(DESC, "Gain of channel.")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_GAIN")
+   	field(SCAN, "I/O Intr")
+}
+
+##########################
+## Bit
+## [3]  Calibration Done
+## [2]	DAC Busy
+## [1]  Memory empty
+## [0]  Memory full
+record(mbbiDirect, "$(P)$(R)CH$(N)Status_RBV")
+{		
+	field(DESC, "Channel status.")
+	field(DTYP, "asynUInt32Digital")
+	field(INP,  "@asynMask($(PORT),$(N),0x0f,$(TIMEOUT))CH_STATUS")
+   	field(SCAN, "I/O Intr")  	
+}
+
+##record(bo, "$(P)$(R)CH$(N)Calibrate")
+##{		
+##	field(DESC, "Start calibration for a specific channel.")
+##	field(DTYP, "asynInt32")
+##	field(OUT,  "@asyn($(PORT),$(N),$(TIMEOUT))CH_CALIBRATE")
+##}
